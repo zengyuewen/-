@@ -1,0 +1,15 @@
+每次用camder手动一层一层的进入目标文件夹，是一件很麻烦的事儿。所以，将camder添加到系统右键菜单是个很好地解决方法。
+
+1、把 Cmder 加到环境变量 
+把Cmder.exe存放的目录添加到系统环境变量； 
+加完之后,Win+r一下输入cmder,即可。
+
+2、添加 cmder 到右键菜单：环境变量添加后，在任意文件夹中即可打开Cmder，上一步的把 Cmder 加到环境变量就是为此服务的, 在管理员权限的终端输入以下语句即可: 
+Cmder.exe /REGISTER ALL
+
+3、为Cmder.exe创建快捷方式，右击Cmder.exe选择“创建快捷方式”点击即可，以后打开Cmder.exe只要点击桌面对应的快捷方式即可
+--------------------- 
+作者：李留白 
+来源：CSDN 
+原文：https://blog.csdn.net/hicoldcat/article/details/64904652 
+版权声明：本文为博主原创文章，转载请附上博文链接！
