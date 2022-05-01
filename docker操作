@@ -2,7 +2,10 @@
 
 1 查看docker版本: docker -v
 2 查看docker服务端与客户端版本： docker version
-3 docker启动、关闭、重启： systemctl start/stop/restart docker
+3   docker启动： systemctl start docker
+3.1 docker关闭： systemctl stop docker
+3.2 docker重启： systemctl  docker
+
 4 docker 运行状态查询 systemctl status docker
 
 5 镜像操作
