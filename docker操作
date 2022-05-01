@@ -38,7 +38,7 @@ docker cp   test.txt    jenkins:/
 7.2 容器拷贝文件到宿主机
 docker cp   jenkins:/abc.txt   /root
 
-
+容器保存镜像：https://blog.csdn.net/qq_14945437/article/details/106135369
 8 容器打包及恢复
 docker commit -m "my customer jenkins" jenkins my_jenkins:1.0
 
