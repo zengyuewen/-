@@ -1,10 +1,11 @@
 elasticsearch常用接口
-[https://github.com/xr2117/ElasticSearch7](https://github.com/xr2117/ElasticSearch7)
+https://github.com/xr2117/ElasticSearch7
 网易邮箱：YCQYJREXNAXUHTRC
 
 
 docker+Jenkins+python3+allure+pytest搭建经验总结
-1 docker 安装，这部分按照相关文档操作即可，[https://www.cnblogs.com/poloyy/p/13921450.html](https://www.cnblogs.com/poloyy/p/13921450.html)
+1 docker 安装，这部分按照相关文档操作即可，
+https://www.cnblogs.com/poloyy/p/13921450.html
 
 1.1 卸载旧版docker（如存在）
 sudo yum remove docker \
@@ -22,13 +23,13 @@ step 1: 安装必要的一些系统工具
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 
 Step 2: 添加软件源信息，国内 Repository 更加稳定
-sudo yum-config-manager --add-repo [https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo](https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo)
+sudo yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo(https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo)
 
 Step 3: 更新
 sudo yum makecache fast
 
 1.3 安装最新版本的 Docker Engine 和 Container
-sudo yum install docker-ce docker-ce-cli [containerd.io](http://containerd.io)
+sudo yum install docker-ce docker-ce-cli containerd.io(http://containerd.io)
 
 如果提示接受GPG密钥，请验证指纹是否与 060A 61C5 1B55 8A7F 742B 77AA C52F EB6B 621E 9F35 匹配，如果是，可接受
 安装成功后不代表 Docker 已成功，且 Docker 组虽已创建，但没有用户添加到该组
@@ -40,12 +41,12 @@ sudo yum install docker-ce docker-ce-cli [containerd.io](http://containerd.io)
 - 挂载目录授权      chmod -R 777 /var/jenkins_home
 - 创建容器：
 docker run -id --name jenkins -p 9090:8080 -u 0 -v /etc/jenkins_home:/var/jenkins_home   jenkins/jenkins，其中-u 0 指定root用户，解决容器启动后自动退出得问题
-- [Jenkins容器内安装python3 和allure]参照：
-[https://www.cnblogs.com/poloyy/p/13954637.html]
+- Jenkins容器内安装python3 和allure参照：
+https://www.cnblogs.com/poloyy/p/13954637.html
 - pip3 安装相关库后，如果有pytest库，增加pytest软连接：
 ln -s /var/jenkins_home/python3/python/bin/pytest /usr/bin/pytest，路径根据实际调整
-- [在 Jenkins 容器上的搭建持续集成环境和完成自动化测试]参照：
-[https://www.cnblogs.com/poloyy/p/13955641.html]
+- 在 Jenkins 容器上的搭建持续集成环境和完成自动化测试参照：
+https://www.cnblogs.com/poloyy/p/13955641.html
 
 Linux系统防火墙命令
 开放端口
