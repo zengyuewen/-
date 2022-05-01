@@ -1,0 +1,47 @@
+参阅：[https://www.cnblogs.com/xiugeng/p/16008671.html#_label1_0](https://www.cnblogs.com/xiugeng/p/16008671.html#_label1_0)
+
+1 查看docker版本: docker -v
+2 查看docker服务端与客户端版本： docker version
+3 docker启动、关闭、重启： systemctl start/stop/restart docker
+4 docker 运行状态查询 systemctl status docker
+
+5 镜像操作
+5.1 查看本地镜像    docker images  镜像名称
+5.2 查询镜像   docker search  镜像名称
+5.2 拉取镜像到本地    docker pull  镜像名称
+
+6 容器操作
+6.1 运行容器查看  docker ps
+6.2 容器查看   docker ps -a
+6.3 创建容器  docker run  常用参数
+-d    后台运行
+-i    保持标准输入开启，即运行容器
+-v   目录映射—挂载
+-p  端口映射
+-t  容器重新分配一个伪输入终端—-容器启动后，进入容器
+--name   为容器指定名称
+--restart   设置重启策略，如设置always，表示容器即使异常退出也会自动重启
+
+实列：
+docker run -id  --name  jenkins
+-p 9090:8080
+-v /var/jenkins_home:/var/jenkins_home
+ jenkins/jenkins
+
+7 宿主机与容器文件传递
+7.1 宿主机拷贝文件到容器
+docker cp   test.txt    jenkins:/
+
+7.2 容器拷贝文件到宿主机
+docker cp   jenkins:/abc.txt   /root
+
+
+8 容器打包及恢复
+docker commit -m "my customer jenkins" jenkins my_jenkins:1.0
+
+8.1 将镜像打包为tar文件   要先把挂载目录拷贝进容器内
+docker save -o ./myjenkins.tar  my_jenkins:1.0
+
+8.2 加载镜像
+docker load -i myjenkins.tar
+
