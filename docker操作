@@ -1,4 +1,4 @@
-参阅：[https://www.cnblogs.com/xiugeng/p/16008671.html#_label1_0](https://www.cnblogs.com/xiugeng/p/16008671.html#_label1_0)
+参阅：https://www.cnblogs.com/xiugeng/p/16008671.html#_label1_0
 
 1 查看docker版本: docker -v
 2 查看docker服务端与客户端版本： docker version
