@@ -1,0 +1,55 @@
+4、MongｏDB文档存储
+	4.1 安装
+		安装MongoDB并启动服务
+		pip install pymongo
+	4.2 链接mongoDB
+		import  pymongo
+		client = pymongo.MongoClient(host='localost', port=27017)
+	4.3 指定数据库
+		指定test数据库
+			方式1：db = client.test
+			方式2：db=client['test']
+	4.4 指定集合（相当于表）
+		方式1：collection = db.students
+		方式2：collection = db['students']
+	4.5 插入数据
+		待插入数据
+			student = {'id':'20210101','name':'tom','age':'20','gender':'male'}
+			student1 = {'id':'20210102','name':'jim','age':'21','gender':'male'}
+		旧方法
+			插入单条数据：result = collection.insert(student)
+			返回一个_id值，由MongoDB字段产生
+			插入多条数据：result = collection.insert([student,student1])
+			返回对应_id集合，由MongoDB字段产生
+		官方推荐方法
+			插入单条数据：result = collection.insert_one(student)
+			返回一个InsertOneResult对象，可以调用其inserted_id属性获取其_id，由MongoDB字段产生
+			插入多条数据：result = collection.insert_many([student,student1])
+			返回一个InsertManyResult对象，可以调用其inserted_ids属性获取其_id列表，由MongoDB字段产生
+	4.6 查询数据
+		查询单条数据
+			result=collection.find_one({'name':'jim'})
+				存在，返回一个字典类型的结果
+				不存在，返回None
+		根据ObjectId查询数据
+			from bson.objectid import ObjectId
+			result=collection.find_one({'_id': ObjectId(' _id信息')})
+				存在，返回一个字典类型的结果
+				不存在，返回None
+		查询多条条数据
+			result=collection.find({'age': '20'})
+				存在，返回Cursor类型的结果，相当于一个生成器，通过遍历可以获取所有的结果，每一个结果都是一个字典类型的
+				不存在，返回None
+	4.7 数据计数
+		result = collection.find().count()
+			返回符合条件的数据数
+	4.8 数据排序
+		results = collection.find().sort('name', pymongo.ASCENDING)
+		[result['name'] for result in results]
+			升序展示查询数据
+			DSCENDING，降序排序
+	4.9 偏移数据
+		skip(2)：表示忽略前两个元素，获取第三个及以后的元素
+		results = collection.find().sort('name', pymongo.ASCENDING).skip(2)
+		使用limit方法进一步限制，查询的结果
+		results = collection.find().sort('name', pymongo.ASCENDING).skip(2).limit(2)
