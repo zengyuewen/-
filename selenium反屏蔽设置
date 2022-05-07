@@ -1,0 +1,44 @@
+转自：https://www.cnblogs.com/xiao987334176/p/13719208.html，感谢作者分享
+
+# 反屏蔽代码设置
+from selenium.webdriver import Chrome
+from selenium.webdriver import ChromeOptions
+
+options = ChromeOptions()
+# 添加反屏蔽
+options.add_experimental_option('excludeSwitches', ['enable-automation'])
+options.add_experimental_option('useAutomationExtension', False)
+# 添加无头模式运行
+options.add_argument("--headless")
+
+bro = Chrome(options=options)
+bro.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+  "source": """
+    Object.defineProperty(navigator, 'webdriver', {
+      get: () => undefined
+    })
+  """
+})
+
+url = "fudan.bbs.kaoyan.com"  # 首页
+bro.get("http://fudan.bbs.kaoyan.com/")
+bro.implicitly_wait(10)
+
+# 检测原理：
+它是怎么做的的呢？
+一般情况下，我们使用Selenium打开一个网页时，会有一个提示：Chrome正受到自动测试软件的控制。
+
+然后打开调试工具，点击console，输入代码：
+window.navigator.webdriver     ==》 返回True
+众多网站都针对 Selenium的js监测机制，就是上面的方法实现的。
+
+解决：
+只需要设置Chromedriver的启动参数即可解决问题。
+在启动Chromedriver之前，为Chrome开启实验性功能参数excludeSwitches，它的值为['enable-automation']，代码同上。
+运行上面的代码，就没有Chrome正受到自动测试软件的控制的提示了。
+
+此时打开调试工具，点击console，输入代码：
+window.navigator.webdriver     ==》 返回undefined
+众多网站都针对 Selenium的js监测机制，就是上面的方法实现的。
+
+
