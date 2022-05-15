@@ -1,0 +1,27 @@
+django命令
+1、切换到项目路径
+django-admin startproject  项目名称
+
+1) 避免项目名和配置重名
+切换到项目路径
+django-admin startproject config .
+
+2、 添加应用
+python manage.py startapp  应用名称
+
+3、 添加（注册）应用到setting文件INSTALLED_APPS列表
+
+4、用模型类生成迁移文件
+python manage.py makemigrations 应用名称    # 生成指定应用得数据库
+
+5、执行迁移
+python manage.py migrate    # 提交到数据库
+
+6、启动服务器
+python manage.py runserver 8000
+
+7、创建管理员用户
+python manage.py createsuperuser  根据操作提示输入用户信息和密码
+
+admin的使用admin.py
+	admin.site.register(模型类，admin类)
